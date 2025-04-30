@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Deteksi Lokasi Anda</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #location {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Deteksi Lokasi Anda</h1>
+  <p id="location">Mengambil lokasi...</p>
+
+  <script>
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        document.getElementById("location").textContent = 
+          `Lintang: ${latitude}, Bujur: ${longitude}`;
+      }, function(error) {
+        document.getElementById("location").textContent = 
+          "Gagal mendapatkan lokasi: " + error.message;
+      });
+    } else {
+      document.getElementById("location").textContent = 
+        "Geolokasi tidak didukung di browser ini.";
+    }
+  </script>
+</body>
+</html>
